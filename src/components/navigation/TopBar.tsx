@@ -1,7 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Ruler, X } from "lucide-react";
+import {
+  Menu,
+  Moon,
+  Ruler,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export type SiteMode = "night" | "site";
@@ -56,100 +63,161 @@ const modes: {
 ];
 
 /* =========================================================
+   ACTIVE ROUTE
+========================================================= */
+
+function isActivePath(
+  pathname: string,
+  href: string
+) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return (
+    pathname === href ||
+    pathname.startsWith(`${href}/`)
+  );
+}
+
+/* =========================================================
    NAV LINK
 ========================================================= */
 
 function NavLink({
   label,
   href,
+  active,
 }: {
   label: string;
   href: string;
+  active: boolean;
 }) {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] =
+    useState(false);
+
+  const highlighted =
+    hovered || active;
 
   return (
-    <motion.a
-      href={href}
-      data-magnetic
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <motion.div
+      onMouseEnter={() =>
+        setHovered(true)
+      }
+      onMouseLeave={() =>
+        setHovered(false)
+      }
       whileHover={{ y: -1 }}
-      transition={{ duration: 0.2 }}
-      className="group relative flex items-center px-4 py-3 text-[12px] font-medium text-[var(--muted)]"
+      transition={{
+        duration: 0.2,
+      }}
+      className="relative"
     >
-      {/* Crosshair */}
-      <motion.span
-        initial={false}
-        animate={{
-          opacity: hovered ? 1 : 0,
-          scale: hovered ? 1 : 0.5,
-        }}
-        transition={{ duration: 0.18 }}
-        className="absolute -left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2"
-      >
-        <span className="absolute left-1/2 top-0 h-2.5 w-px -translate-x-1/2 bg-[var(--blue)]" />
-
-        <span className="absolute left-0 top-1/2 h-px w-2.5 -translate-y-1/2 bg-[var(--blue)]" />
-      </motion.span>
-
-      {/* Text */}
-      <motion.span
-        animate={{
-          color: hovered
+      <Link
+        href={href}
+        data-magnetic
+        className="group relative flex items-center px-4 py-3 text-[12px] font-medium"
+        style={{
+          color: highlighted
             ? "var(--ink)"
             : "var(--muted)",
-          x: hovered ? 3 : 0,
         }}
-        transition={{ duration: 0.2 }}
       >
-        {label}
-      </motion.span>
+        {/* Crosshair */}
 
-      {/* Engineering line */}
-      <span className="absolute bottom-1 left-4 right-4 h-px overflow-hidden bg-[var(--blue)]/15">
         <motion.span
-          initial={{
-            scaleX: 0,
-          }}
+          initial={false}
           animate={{
-            scaleX: hovered ? 1 : 0,
+            opacity: highlighted ? 1 : 0,
+            scale: highlighted ? 1 : 0.5,
           }}
           transition={{
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.18,
           }}
-          className="absolute inset-0 origin-left bg-[var(--blue)]"
+          className="absolute -left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2"
+        >
+          <span className="absolute left-1/2 top-0 h-2.5 w-px -translate-x-1/2 bg-[var(--blue)]" />
+
+          <span className="absolute left-0 top-1/2 h-px w-2.5 -translate-y-1/2 bg-[var(--blue)]" />
+        </motion.span>
+
+        {/* Text */}
+
+        <motion.span
+          animate={{
+            x: highlighted ? 3 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+        >
+          {label}
+        </motion.span>
+
+        {/* Engineering line */}
+
+        <span className="absolute bottom-1 left-4 right-4 h-px overflow-hidden bg-[var(--blue)]/15">
+          <motion.span
+            initial={false}
+            animate={{
+              scaleX: highlighted ? 1 : 0,
+            }}
+            transition={{
+              duration: 0.3,
+              ease: [
+                0.22,
+                1,
+                0.36,
+                1,
+              ],
+            }}
+            className="absolute inset-0 origin-left bg-[var(--blue)]"
+          />
+        </span>
+
+        {/* Left tick */}
+
+        <motion.span
+          initial={false}
+          animate={{
+            opacity: highlighted ? 1 : 0,
+            height: highlighted ? 5 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="absolute bottom-[-1px] left-4 w-px bg-[var(--blue)]"
         />
-      </span>
 
-      {/* Dimension ticks */}
-      <motion.span
-        initial={{
-          opacity: 0,
-          height: 0,
-        }}
-        animate={{
-          opacity: hovered ? 1 : 0,
-          height: hovered ? 5 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className="absolute bottom-[-1px] left-4 w-px bg-[var(--blue)]"
-      />
+        {/* Right tick */}
 
-      <motion.span
-        initial={{
-          opacity: 0,
-          height: 0,
-        }}
-        animate={{
-          opacity: hovered ? 1 : 0,
-          height: hovered ? 5 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className="absolute bottom-[-1px] right-4 w-px bg-[var(--blue)]"
-      />
-    </motion.a>
+        <motion.span
+          initial={false}
+          animate={{
+            opacity: highlighted ? 1 : 0,
+            height: highlighted ? 5 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="absolute bottom-[-1px] right-4 w-px bg-[var(--blue)]"
+        />
+
+        {/* Active dot */}
+
+        <motion.span
+          initial={false}
+          animate={{
+            opacity: active ? 1 : 0,
+            scale: active ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="absolute -right-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--blue)]"
+        />
+      </Link>
+    </motion.div>
   );
 }
 
@@ -161,49 +229,48 @@ export default function TopBar({
   mode,
   setMode,
 }: TopBarProps) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [modeOpen, setModeOpen] = useState(false);
+  const pathname = usePathname();
+
+  const [menuOpen, setMenuOpen] =
+    useState(false);
+
+  const [modeOpen, setModeOpen] =
+    useState(false);
 
   const currentMode =
-    modes.find((item) => item.id === mode) ?? modes[0];
+    modes.find(
+      (item) => item.id === mode
+    ) ?? modes[0];
 
-  const changeMode = (newMode: SiteMode) => {
+  const changeMode = (
+    newMode: SiteMode
+  ) => {
     setMode(newMode);
     setModeOpen(false);
   };
 
   return (
     <>
-      {/* ================= DESKTOP ================= */}
+      {/* =====================================================
+          DESKTOP HEADER
+      ===================================================== */}
 
-      <motion.header
-        initial={{
-          y: -25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="fixed left-4 right-4 top-4 z-[100] hidden md:block lg:left-6 lg:right-6"
-      >
+      <header className="fixed left-4 right-4 top-4 z-[100] hidden md:block lg:left-6 lg:right-6">
         <div className="relative mx-auto flex h-[72px] max-w-[1500px] items-center justify-between rounded-[22px] border border-[var(--border)] bg-[var(--nav-bg)] px-6 shadow-[0_12px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl lg:px-7">
 
-          {/* Brand */}
-          <motion.a
+          {/* =================================================
+              BRAND
+          ================================================= */}
+
+          <Link
             href="/"
             data-magnetic
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
             className="group relative z-10 flex items-center gap-3"
           >
             <motion.div
               className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-[12px] bg-[var(--blue)]"
               whileHover={{
+                scale: 1.02,
                 borderRadius: "50%",
               }}
               transition={{
@@ -237,29 +304,45 @@ export default function TopBar({
                 Civil Engineering
               </div>
             </div>
-          </motion.a>
+          </Link>
 
-          {/* Navigation */}
+          {/* =================================================
+              NAVIGATION
+          ================================================= */}
+
           <nav className="relative z-10 flex items-center gap-1">
             {links.map((link) => (
               <NavLink
                 key={link.label}
                 label={link.label}
                 href={link.href}
+                active={isActivePath(
+                  pathname,
+                  link.href
+                )}
               />
             ))}
           </nav>
 
-          {/* Mode */}
+          {/* =================================================
+              MODE SELECTOR
+          ================================================= */}
+
           <div className="relative z-20">
             <motion.button
               type="button"
               data-magnetic
               onClick={() =>
-                setModeOpen((value) => !value)
+                setModeOpen(
+                  (value) => !value
+                )
               }
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{
+                scale: 1.03,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
               className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/50 px-3 py-2 transition-colors hover:border-[var(--blue)]/40"
               aria-expanded={modeOpen}
             >
@@ -283,7 +366,9 @@ export default function TopBar({
 
               <motion.span
                 animate={{
-                  rotate: modeOpen ? 180 : 0,
+                  rotate: modeOpen
+                    ? 180
+                    : 0,
                 }}
                 className="text-[var(--blue)]"
               >
@@ -318,16 +403,21 @@ export default function TopBar({
                   </div>
 
                   {modes.map((item) => {
-                    const active = item.id === mode;
+                    const active =
+                      item.id === mode;
 
                     return (
                       <motion.button
                         key={item.id}
                         type="button"
                         onClick={() =>
-                          changeMode(item.id)
+                          changeMode(
+                            item.id
+                          )
                         }
-                        whileHover={{ x: 3 }}
+                        whileHover={{
+                          x: 3,
+                        }}
                         className={`flex w-full items-center gap-3 rounded-[13px] px-3 py-3 text-left transition-colors ${
                           active
                             ? "bg-[var(--blue)]/8"
@@ -335,15 +425,20 @@ export default function TopBar({
                         }`}
                       >
                         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--blue)]/8 text-[var(--blue)]">
-                          {item.id === "night" ? (
+                          {item.id ===
+                          "night" ? (
                             <Moon
                               size={14}
-                              strokeWidth={1.4}
+                              strokeWidth={
+                                1.4
+                              }
                             />
                           ) : (
                             <Ruler
                               size={14}
-                              strokeWidth={1.4}
+                              strokeWidth={
+                                1.4
+                              }
                             />
                           )}
                         </span>
@@ -354,7 +449,9 @@ export default function TopBar({
                           </span>
 
                           <span className="mt-0.5 block text-[9px] text-[var(--muted)]">
-                            {item.description}
+                            {
+                              item.description
+                            }
                           </span>
                         </span>
 
@@ -369,27 +466,16 @@ export default function TopBar({
             </AnimatePresence>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* ================= MOBILE ================= */}
+      {/* =====================================================
+          MOBILE HEADER
+      ===================================================== */}
 
-      <motion.header
-        initial={{
-          y: -25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.6,
-        }}
-        className="fixed left-3 right-3 top-3 z-[100] md:hidden"
-      >
+      <header className="fixed left-3 right-3 top-3 z-[100] md:hidden">
         <div className="flex h-[64px] items-center justify-between rounded-[18px] border border-[var(--border)] bg-[var(--nav-bg)] px-4 shadow-[0_10px_35px_rgba(0,0,0,0.08)] backdrop-blur-xl">
 
-          <a
+          <Link
             href="/"
             className="flex items-center gap-2.5"
           >
@@ -406,17 +492,22 @@ export default function TopBar({
                 Civil Engineering
               </div>
             </div>
-          </a>
+          </Link>
 
           <div className="flex items-center gap-2">
 
-            {/* Mobile Mode */}
+            {/* Mobile mode button */}
+
             <motion.button
               type="button"
               onClick={() =>
-                setModeOpen((value) => !value)
+                setModeOpen(
+                  (value) => !value
+                )
               }
-              whileTap={{ scale: 0.9 }}
+              whileTap={{
+                scale: 0.9,
+              }}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/50"
             >
               {mode === "night" ? (
@@ -432,13 +523,18 @@ export default function TopBar({
               )}
             </motion.button>
 
-            {/* Mobile Menu */}
+            {/* Mobile menu button */}
+
             <motion.button
               type="button"
               onClick={() =>
-                setMenuOpen((value) => !value)
+                setMenuOpen(
+                  (value) => !value
+                )
               }
-              whileTap={{ scale: 0.9 }}
+              whileTap={{
+                scale: 0.9,
+              }}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/50 text-[var(--ink)]"
               aria-expanded={menuOpen}
             >
@@ -450,7 +546,7 @@ export default function TopBar({
             </motion.button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* =====================================================
           MOBILE MODE MENU
@@ -474,49 +570,66 @@ export default function TopBar({
             className="fixed left-3 right-3 top-[84px] z-[90] md:hidden"
           >
             <div className="rounded-[18px] border border-[var(--border)] bg-[var(--nav-bg)] p-2 shadow-[0_15px_50px_rgba(0,0,0,0.12)] backdrop-blur-xl">
-              {modes.map((item) => (
-                <motion.button
-                  key={item.id}
-                  type="button"
-                  onClick={() =>
-                    changeMode(item.id)
-                  }
-                  whileHover={{ x: 3 }}
-                  className={`flex w-full items-center gap-3 rounded-[13px] px-4 py-3 text-left ${
-                    item.id === mode
-                      ? "bg-[var(--blue)]/8"
-                      : "hover:bg-[var(--blue)]/5"
-                  }`}
-                >
-                  <span className="text-[var(--blue)]">
-                    {item.id === "night" ? (
-                      <Moon
-                        size={15}
-                        strokeWidth={1.4}
-                      />
-                    ) : (
-                      <Ruler
-                        size={15}
-                        strokeWidth={1.4}
-                      />
+
+              {modes.map((item) => {
+                const active =
+                  item.id === mode;
+
+                return (
+                  <motion.button
+                    key={item.id}
+                    type="button"
+                    onClick={() =>
+                      changeMode(
+                        item.id
+                      )
+                    }
+                    whileHover={{
+                      x: 3,
+                    }}
+                    className={`flex w-full items-center gap-3 rounded-[13px] px-4 py-3 text-left ${
+                      active
+                        ? "bg-[var(--blue)]/8"
+                        : "hover:bg-[var(--blue)]/5"
+                    }`}
+                  >
+                    <span className="text-[var(--blue)]">
+                      {item.id ===
+                      "night" ? (
+                        <Moon
+                          size={15}
+                          strokeWidth={
+                            1.4
+                          }
+                        />
+                      ) : (
+                        <Ruler
+                          size={15}
+                          strokeWidth={
+                            1.4
+                          }
+                        />
+                      )}
+                    </span>
+
+                    <span className="flex-1">
+                      <span className="block text-[11px] font-medium text-[var(--ink)]">
+                        {item.label}
+                      </span>
+
+                      <span className="mt-0.5 block text-[9px] text-[var(--muted)]">
+                        {
+                          item.description
+                        }
+                      </span>
+                    </span>
+
+                    {active && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--blue)]" />
                     )}
-                  </span>
-
-                  <span className="flex-1">
-                    <span className="block text-[11px] font-medium text-[var(--ink)]">
-                      {item.label}
-                    </span>
-
-                    <span className="mt-0.5 block text-[9px] text-[var(--muted)]">
-                      {item.description}
-                    </span>
-                  </span>
-
-                  {item.id === mode && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--blue)]" />
-                  )}
-                </motion.button>
-              ))}
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
         )}
@@ -544,23 +657,57 @@ export default function TopBar({
             className="fixed left-3 right-3 top-[84px] z-[80] md:hidden"
           >
             <div className="overflow-hidden rounded-[18px] border border-[var(--border)] bg-[var(--nav-bg)] p-2 shadow-[0_15px_50px_rgba(0,0,0,0.12)] backdrop-blur-xl">
-              {links.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() =>
-                    setMenuOpen(false)
-                  }
-                  whileHover={{ x: 4 }}
-                  className="flex items-center justify-between rounded-[13px] px-4 py-4 text-[13px] text-[var(--muted)] transition-colors hover:bg-[var(--blue)]/5 hover:text-[var(--ink)]"
-                >
-                  <span>{link.label}</span>
 
-                  <span className="text-[var(--blue)]">
-                    →
-                  </span>
-                </motion.a>
-              ))}
+              {links.map((link) => {
+                const active =
+                  isActivePath(
+                    pathname,
+                    link.href
+                  );
+
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() =>
+                      setMenuOpen(
+                        false
+                      )
+                    }
+                    className="flex items-center justify-between rounded-[13px] px-4 py-4 text-[13px] transition-colors"
+                    style={{
+                      color: active
+                        ? "var(--ink)"
+                        : "var(--muted)",
+
+                      backgroundColor:
+                        active
+                          ? "color-mix(in srgb, var(--blue) 8%, transparent)"
+                          : "transparent",
+                    }}
+                  >
+                    <span
+                      className={
+                        active
+                          ? "font-medium"
+                          : ""
+                      }
+                    >
+                      {link.label}
+                    </span>
+
+                    <div className="flex items-center gap-2">
+                      {active && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--blue)]" />
+                      )}
+
+                      <span className="text-[var(--blue)]">
+                        →
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

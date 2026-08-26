@@ -9,9 +9,6 @@ import {
 } from "lucide-react";
 
 import BrickCursor from "@/components/cursor/BrickCursor";
-import TopBar, {
-  type SiteMode,
-} from "@/components/navigation/TopBar";
 import EngineeringButton from "@/components/EngineeringButton";
 
 /* =========================================================
@@ -754,17 +751,12 @@ export default function ContactPage() {
       {/* Navigation */}
       <BrickCursor />
 
-      <TopBar
-        mode={mode}
-        setMode={setMode}
-      />
-
-      {/* ===================================================
+            {/* ===================================================
           HERO
       =================================================== */}
 
       <section
-        className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-36 md:pt-40 lg:pt-44"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-24"
         style={{
           backgroundColor: isSite
             ? "#C7B792"
@@ -908,7 +900,7 @@ export default function ContactPage() {
           </span>
         </div>
 
-        {/* Main hero content */}
+        {/* Hero content */}
         <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
 
           <motion.p
@@ -989,7 +981,7 @@ export default function ContactPage() {
             or project management, our team is ready to discuss the next step.
           </motion.p>
 
-          {/* Main communication scene */}
+          {/* Home → WhatsApp → Office */}
           <HouseToOffice mode={mode} />
 
           {/* Buttons */}
@@ -1039,7 +1031,7 @@ export default function ContactPage() {
       {/* Contact details */}
       <ContactDetails mode={mode} />
 
-      {/* Form */}
+      {/* Enquiry form */}
       <ContactForm />
 
       {/* Footer */}

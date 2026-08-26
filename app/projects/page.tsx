@@ -4,9 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import BrickCursor from "@/components/cursor/BrickCursor";
-import TopBar, {
-  type SiteMode,
-} from "@/components/navigation/TopBar";
 import EngineeringButton from "@/components/EngineeringButton";
 
 /* =========================================================
@@ -1137,12 +1134,7 @@ export default function ProjectsPage() {
       {/* Navigation */}
       <BrickCursor />
 
-      <TopBar
-        mode={mode}
-        setMode={setMode}
-      />
-
-      {/* ===================================================
+            {/* ===================================================
           HERO
       =================================================== */}
 

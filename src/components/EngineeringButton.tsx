@@ -1,92 +1,139 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import Link from "next/link";
+import {
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 
 interface EngineeringButtonProps {
   children: ReactNode;
   href?: string;
-  onClick?: () => void;
   variant?: "primary" | "secondary";
   className?: string;
+  onClick?: (
+    event: MouseEvent<HTMLButtonElement>
+  ) => void;
+  disabled?: boolean;
 }
+
+/* =========================================================
+   ENGINEERING BUTTON
+========================================================= */
 
 export default function EngineeringButton({
   children,
   href,
-  onClick,
   variant = "primary",
   className = "",
+  onClick,
+  disabled = false,
 }: EngineeringButtonProps) {
-  const primary = variant === "primary";
+  const baseClasses =
+    "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] transition-all duration-300";
 
-  const content = (
-    <motion.span
-      data-magnetic
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.2 }}
-      className={`
-        group relative inline-flex items-center justify-center
-        overflow-hidden rounded-full
-        px-7 py-3.5
-        text-[10px] font-semibold uppercase tracking-[0.18em]
-        transition-all duration-300
-        ${
-          primary
-            ? "bg-[#1557A0] text-white hover:bg-[#0B2F5B]"
-            : "border border-[#1557A0] bg-transparent text-[#1557A0] hover:bg-[#1557A0] hover:text-white"
-        }
-        ${className}
-      `}
-    >
-      {/* Small survey crosshair */}
-      <span className="absolute left-2 top-1/2 h-3 w-3 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-current" />
-        <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-current" />
-      </span>
+  const primaryClasses =
+    "bg-[var(--blue)] text-white hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.12)]";
 
-      {/* Text */}
-      <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-[2px]">
-        {children}
-      </span>
+  const secondaryClasses =
+    "border border-[var(--border)] bg-[var(--surface)] text-[var(--ink)] hover:-translate-y-1 hover:border-[var(--blue)]/40";
 
-      {/* Engineering measurement line */}
-      <motion.span
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
-        transition={{ duration: 0.25 }}
-        className="absolute bottom-0 left-3 right-3 h-px origin-left bg-current"
-      />
+  const disabledClasses =
+    disabled
+      ? "pointer-events-none cursor-not-allowed opacity-50"
+      : "";
 
-      {/* Measurement ticks */}
-      <span className="absolute bottom-0 left-3 h-1.5 w-px bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+  const variantClasses =
+    variant === "primary"
+      ? primaryClasses
+      : secondaryClasses;
 
-      <span className="absolute bottom-0 right-3 h-1.5 w-px bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+  const classes = `
+    ${baseClasses}
+    ${variantClasses}
+    ${disabledClasses}
+    ${className}
+  `;
 
-      {/* Arrow */}
-      <motion.span
-        initial={{ opacity: 0, x: -3 }}
-        whileHover={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.2 }}
-        className="absolute right-3 text-[10px]"
-      >
-        →
-      </motion.span>
-    </motion.span>
-  );
+  /* =======================================================
+     NO HREF → NORMAL BUTTON
+  ======================================================= */
 
-  if (href) {
+  if (!href) {
     return (
-      <a href={href} data-magnetic>
-        {content}
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        className={classes}
+      >
+        <span className="relative z-10">
+          {children}
+        </span>
+
+        <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </button>
+    );
+  }
+
+  /* =======================================================
+     EXTERNAL LINK
+  ======================================================= */
+
+  const isExternal =
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("#");
+
+  if (isExternal) {
+    return (
+      <a
+        href={href}
+        className={classes}
+        target={
+          href.startsWith("http://") ||
+          href.startsWith("https://")
+            ? "_blank"
+            : undefined
+        }
+        rel={
+          href.startsWith("http://") ||
+          href.startsWith("https://")
+            ? "noopener noreferrer"
+            : undefined
+        }
+      >
+        <span className="relative z-10">
+          {children}
+        </span>
+
+        <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
       </a>
     );
   }
 
+  /* =======================================================
+     INTERNAL LINK → NEXT.JS CLIENT NAVIGATION
+  ======================================================= */
+
   return (
-    <button type="button" onClick={onClick} data-magnetic>
-      {content}
-    </button>
+    <Link
+      href={href}
+      className={classes}
+    >
+      <span className="relative z-10">
+        {children}
+      </span>
+
+      <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
+        →
+      </span>
+    </Link>
   );
 }
