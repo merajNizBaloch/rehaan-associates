@@ -1,0 +1,527 @@
+@import "tailwindcss";
+
+/* =========================================================
+   REHAAN & ASSOCIATES
+   GLOBAL DESIGN SYSTEM
+   MODES: NIGHT / SITE
+========================================================= */
+
+
+/* =========================================================
+   NIGHT MODE — DEFAULT
+========================================================= */
+
+:root {
+  --paper: #07111f;
+  --surface: #0d1927;
+
+  --ink: #f4f7fa;
+  --muted: #9ba7b4;
+
+  /* BRAND BLUE */
+  --blue: #4f8fd2;
+  --deep-blue: #0b2f5b;
+  --light-blue: #17385f;
+  --accent: #4f8fd2;
+
+  /* Neutral materials */
+  --sand: #343d48;
+  --concrete: #252d35;
+
+  --border: rgba(244, 247, 250, 0.1);
+  --border-strong: rgba(244, 247, 250, 0.2);
+
+  --nav-bg: rgba(7, 17, 31, 0.92);
+}
+
+
+/* =========================================================
+   SITE MODE
+   LIGHT-BROWN ENGINEERING PAPER
+========================================================= */
+
+[data-mode="site"] {
+  --paper: #cfc2aa;
+  --surface: #ded3bf;
+
+  --ink: #282a2b;
+  --muted: #69645b;
+
+  /* SAME BRAND BLUE */
+  --blue: #1557a0;
+  --deep-blue: #0b2f5b;
+  --light-blue: #dce7f2;
+  --accent: #1557a0;
+
+  /* Neutral paper/material tones */
+  --sand: #b9aa91;
+  --concrete: #b8af9f;
+
+  --border: rgba(40, 42, 43, 0.18);
+  --border-strong: rgba(40, 42, 43, 0.3);
+
+  --nav-bg: rgba(207, 194, 170, 0.94);
+
+  /*
+    Paper texture:
+    - fine grain
+    - paper fibers
+    - warm variation
+    - subtle drafting grid
+  */
+
+  background-color: #cfc2aa;
+
+  background-image:
+    radial-gradient(
+      rgba(45, 40, 32, 0.08) 0.55px,
+      transparent 0.7px
+    ),
+    radial-gradient(
+      rgba(255, 255, 255, 0.14) 0.8px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 18% 20%,
+      rgba(255, 248, 232, 0.25),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      rgba(90, 70, 45, 0.08),
+      transparent 38%
+    ),
+    linear-gradient(
+      rgba(21, 87, 160, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(21, 87, 160, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    4px 4px,
+    7px 7px,
+    auto,
+    auto,
+    48px 48px,
+    48px 48px;
+
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  transition:
+    background-color 0.7s ease,
+    color 0.7s ease;
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   LINKS / BUTTONS
+========================================================= */
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [data-magnetic] {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+
+/* =========================================================
+   GENERAL ENGINEERING GRID
+========================================================= */
+
+.engineering-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(79, 143, 210, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(79, 143, 210, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+}
+
+
+/* =========================================================
+   NIGHT GRID
+========================================================= */
+
+[data-mode="night"] .engineering-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(79, 143, 210, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(79, 143, 210, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+}
+
+
+/* =========================================================
+   SITE — PAPER GRID
+========================================================= */
+
+[data-mode="site"] .site-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(21, 87, 160, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(21, 87, 160, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+}
+
+
+/* =========================================================
+   SITE — MAJOR ENGINEERING GRID
+========================================================= */
+
+[data-mode="site"] .site-grid::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(21, 87, 160, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(21, 87, 160, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 240px 240px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BRAND BLUE UTILITIES
+========================================================= */
+
+.brand-blue {
+  color: var(--blue);
+}
+
+.brand-blue-bg {
+  background-color: var(--blue);
+}
+
+.brand-blue-border {
+  border-color: var(--blue);
+}
+
+
+/* =========================================================
+   SITE — SURVEY POINTS
+========================================================= */
+
+[data-mode="site"] .survey-point {
+  border-color: var(--blue);
+  background-color: var(--blue);
+
+  box-shadow:
+    0 0 0 4px rgba(21, 87, 160, 0.08),
+    0 0 16px rgba(21, 87, 160, 0.12);
+}
+
+
+/* =========================================================
+   SITE — DIMENSIONS
+========================================================= */
+
+[data-mode="site"] .dimension-line {
+  background-color: var(--blue);
+}
+
+[data-mode="site"] .dimension-tick {
+  background-color: var(--blue);
+}
+
+
+/* =========================================================
+   SITE — TECHNICAL MARKINGS
+========================================================= */
+
+[data-mode="site"] .technical-mark {
+  color: var(--blue);
+}
+
+[data-mode="site"] .technical-line {
+  background-color: var(--blue);
+}
+
+[data-mode="site"] .construction-accent {
+  color: var(--blue);
+}
+
+[data-mode="site"] .construction-line {
+  background-color: var(--blue);
+}
+
+
+/* =========================================================
+   SITE — ENGINEERING PANELS
+========================================================= */
+
+[data-mode="site"] .engineering-panel {
+  background: rgba(222, 211, 191, 0.82);
+
+  border: 1px solid rgba(40, 42, 43, 0.15);
+
+  box-shadow:
+    0 10px 35px rgba(70, 55, 35, 0.08);
+}
+
+
+/* =========================================================
+   SITE — TITLE BLOCK
+========================================================= */
+
+[data-mode="site"] .title-block {
+  background: rgba(222, 211, 191, 0.9);
+
+  border: 1px solid rgba(40, 42, 43, 0.2);
+}
+
+[data-mode="site"] .title-block-cell {
+  border-color: rgba(40, 42, 43, 0.14);
+}
+
+[data-mode="site"] .title-block-label {
+  color: #69645b;
+}
+
+[data-mode="site"] .title-block-value {
+  color: #282a2b;
+}
+
+
+/* =========================================================
+   SITE — ROAD ALIGNMENT
+========================================================= */
+
+[data-mode="site"] .road-alignment {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(21, 87, 160, 0.06) 12%,
+      rgba(21, 87, 160, 0.18) 50%,
+      rgba(21, 87, 160, 0.06) 88%,
+      transparent 100%
+    );
+}
+
+[data-mode="site"] .road-centerline {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--blue) 0,
+    var(--blue) 18px,
+    transparent 18px,
+    transparent 34px
+  );
+}
+
+
+/* =========================================================
+   SITE — TECHNICAL NOTES
+========================================================= */
+
+[data-mode="site"] .technical-label {
+  color: #69645b;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+[data-mode="site"] .graphite-note {
+  color: #4f4b43;
+}
+
+
+/* =========================================================
+   SITE — PAPER EDGE / DRAWING EFFECT
+========================================================= */
+
+[data-mode="site"] .paper-sheet {
+  background: #ded3bf;
+
+  border: 1px solid rgba(40, 42, 43, 0.14);
+
+  box-shadow:
+    0 18px 50px rgba(70, 55, 35, 0.1),
+    0 2px 6px rgba(70, 55, 35, 0.06);
+}
+
+
+/* =========================================================
+   SITE — DRAWING CORNER MARKS
+========================================================= */
+
+[data-mode="site"] .drawing-corner {
+  position: relative;
+}
+
+[data-mode="site"] .drawing-corner::before,
+[data-mode="site"] .drawing-corner::after {
+  content: "";
+
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  border-color: var(--blue);
+  opacity: 0.45;
+}
+
+[data-mode="site"] .drawing-corner::before {
+  left: -1px;
+  top: -1px;
+
+  border-left: 1px solid;
+  border-top: 1px solid;
+}
+
+[data-mode="site"] .drawing-corner::after {
+  right: -1px;
+  bottom: -1px;
+
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+
+/* =========================================================
+   SITE — REVISION MARK
+   Reserved for actual technical revision notation.
+========================================================= */
+
+[data-mode="site"] .revision-mark {
+  color: #87403b;
+  border-color: #87403b;
+}
+
+[data-mode="site"] .revision-line {
+  background-color: #87403b;
+}
+
+
+/* =========================================================
+   MODE TRANSITIONS
+========================================================= */
+
+[data-mode] {
+  transition:
+    background-color 0.7s ease,
+    color 0.7s ease,
+    border-color 0.7s ease;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
