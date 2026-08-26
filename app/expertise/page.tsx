@@ -1,8 +1,7 @@
 "use client";
 
-
+import { useSiteMode } from "@/components/SiteModeProvider";
 import type { SiteMode } from "@/components/navigation/TopBar";
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 import BrickCursor from "@/components/cursor/BrickCursor";
@@ -1212,7 +1211,7 @@ function IntegratedDelivery({
 ========================================================= */
 
 export default function ExpertisePage() {
-  const [mode, setMode] = useState<SiteMode>("night");
+  const { mode } = useSiteMode();
 
   return (
     <main

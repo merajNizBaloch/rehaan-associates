@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import TopBarWrapper from "@/components/navigation/TopBarWrapper";
 import SiteLoader from "@/components/SiteLoader";
+import TopBarWrapper from "@/components/navigation/TopBarWrapper";
+import { SiteModeProvider } from "@/components/SiteModeProvider";
 
 export const metadata: Metadata = {
-  title: "Rehaan & Associates | Civil Engineering",
+  title:
+    "Rehaan & Associates | Civil Engineering",
   description:
     "Civil engineering and infrastructure across Balochistan.",
 };
@@ -18,23 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* ================================================
-            INITIAL SITE LOADER
-        ================================================ */}
+        <SiteModeProvider>
+          <SiteLoader />
+          <TopBarWrapper />
 
-        <SiteLoader />
-
-        {/* ================================================
-            GLOBAL NAVBAR
-        ================================================ */}
-
-        <TopBarWrapper />
-
-        {/* ================================================
-            PAGES
-        ================================================ */}
-
-        {children}
+          {children}
+        </SiteModeProvider>
       </body>
     </html>
   );

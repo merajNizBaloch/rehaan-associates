@@ -1,8 +1,7 @@
 "use client";
 
-
+import { useSiteMode } from "@/components/SiteModeProvider";
 import type { SiteMode } from "@/components/navigation/TopBar";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -741,7 +740,7 @@ function ContactForm() {
 ========================================================= */
 
 export default function ContactPage() {
-  const [mode, setMode] = useState<SiteMode>("night");
+  const { mode } = useSiteMode();
 
   const isSite = mode === "site";
 

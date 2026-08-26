@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import BrickCursor from "./cursor/BrickCursor";
-import TopBar from "./navigation/TopBar";
 import EngineeringButton from "./EngineeringButton";
+import { useSiteMode } from "./SiteModeProvider";
 
 export type SiteMode = "night" | "site";
 
@@ -1108,7 +1108,7 @@ function ContactCTA() {
 ========================================================= */
 
 export default function HomePage() {
-  const [mode, setMode] = useState<SiteMode>("night");
+  const { mode } = useSiteMode();
 
   return (
     <main
@@ -1116,12 +1116,6 @@ export default function HomePage() {
       className="min-h-screen bg-[var(--paper)] text-[var(--ink)]"
     >
       <BrickCursor />
-
-      <TopBar
-        mode={mode}
-        setMode={setMode}
-      />
-
       <HeroText mode={mode} />
 
       <AboutSection />

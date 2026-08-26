@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
-
-import TopBar, {
-  type SiteMode,
-} from "./TopBar";
+import TopBar from "./TopBar";
+import { useSiteMode } from "../SiteModeProvider";
 
 export default function TopBarWrapper() {
-  const [mode, setMode] =
-    useState<SiteMode>("night");
+  const { mode, setMode } =
+    useSiteMode();
 
   return (
     <TopBar
