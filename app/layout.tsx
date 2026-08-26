@@ -22,6 +22,7 @@ export default function RootLayout({
       <body>
         <SiteModeProvider>
           <SiteLoader />
+
           <TopBarWrapper />
 
           {children}
