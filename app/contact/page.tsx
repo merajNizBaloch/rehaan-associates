@@ -1,5 +1,7 @@
 "use client";
 
+
+import type { SiteMode } from "@/components/navigation/TopBar";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
