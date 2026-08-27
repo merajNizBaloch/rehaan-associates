@@ -491,19 +491,19 @@ function ContactDetails({
       icon: <MapPin size={19} strokeWidth={1.5} />,
       label: "Office",
       title: "Rehan Consultants",
-      text: "Balochistan, Pakistan",
+      text: "Jinnah Town, Quetta",
     },
     {
       icon: <Phone size={19} strokeWidth={1.5} />,
       label: "Phone",
       title: "Let's talk",
-      text: "Add your official contact number here.",
+      text: "03178921361",
     },
     {
       icon: <Mail size={19} strokeWidth={1.5} />,
       label: "Email",
       title: "Send an enquiry",
-      text: "Add your official email address here.",
+      text: "therehanconsultants@gmail.com",
     },
   ];
 
@@ -1002,7 +1002,7 @@ export default function ContactPage() {
             className="mt-3 flex flex-wrap justify-center gap-3"
           >
             <a
-              href="https://wa.me/YOUR_NUMBER"
+              href="https://wa.me/923178921361"
               target="_blank"
               rel="noopener noreferrer"
               data-magnetic
