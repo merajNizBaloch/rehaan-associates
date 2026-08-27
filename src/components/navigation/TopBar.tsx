@@ -136,7 +136,7 @@ function NavLink({
           }}
           className="absolute -left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2"
         >
-          <span className="absolute left-1/2 top-0 h-2.5 w-px -translate-x-1/2 bg-[var(--blue)]" />
+          <span className="absolute left-1/2 top-0 h-2.5 w-px -translate-x-1/2 bg-white" />
 
           <span className="absolute left-0 top-1/2 h-px w-2.5 -translate-y-1/2 bg-[var(--blue)]" />
         </motion.span>
@@ -268,7 +268,7 @@ export default function TopBar({
             className="group relative z-10 flex items-center gap-3"
           >
             <motion.div
-              className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-[12px] bg-[var(--blue)]"
+              className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-[12px] bg-white"
               whileHover={{
                 scale: 1.02,
                 borderRadius: "50%",
@@ -277,9 +277,11 @@ export default function TopBar({
                 duration: 0.3,
               }}
             >
-              <span className="text-[10px] font-semibold tracking-tight text-white">
-                R&A
-              </span>
+              <img
+                src="/mainlogo.png"
+                alt="Rehan Consultants"
+                className="h-full w-full object-contain p-1"
+              />
 
               <motion.span
                 className="absolute bottom-0 left-0 h-[2px] w-full bg-white"
@@ -301,7 +303,7 @@ export default function TopBar({
               </div>
 
               <div className="mt-[2px] text-[7px] uppercase tracking-[0.23em] text-[var(--muted)]">
-                Civil Engineering
+                Engineering across disciplines
               </div>
             </div>
           </Link>
@@ -479,9 +481,13 @@ export default function TopBar({
             href="/"
             className="flex items-center gap-2.5"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-[var(--blue)] text-[9px] font-semibold text-white">
-              R&A
-            </div>
+            <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-[10px] bg-white">
+            <img
+              src="/mainlogo.png"
+              alt="Rehan Consultants"
+              className="h-full w-full object-contain p-1"
+            />
+          </div>
 
             <div>
               <div className="text-[9px] font-semibold tracking-[0.1em] text-[var(--ink)]">
@@ -489,7 +495,7 @@ export default function TopBar({
               </div>
 
               <div className="mt-[2px] text-[7px] uppercase tracking-[0.18em] text-[var(--muted)]">
-                Civil Engineering
+                Engineering across disciplines
               </div>
             </div>
           </Link>
