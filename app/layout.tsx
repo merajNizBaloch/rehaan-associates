@@ -6,10 +6,14 @@ import TopBarWrapper from "@/components/navigation/TopBarWrapper";
 import { SiteModeProvider } from "@/components/SiteModeProvider";
 
 export const metadata: Metadata = {
-  title:
-    "Rehan Consultants | Civil Engineering",
+  title: "Rehan Consultants | Civil Engineering",
   description:
     "Civil engineering and infrastructure across Balochistan.",
+  icons: {
+    icon: "/mainlogo.png",
+    shortcut: "/mainlogo.png",
+    apple: "/mainlogo.png",
+  },
 };
 
 export default function RootLayout({
@@ -22,9 +26,7 @@ export default function RootLayout({
       <body>
         <SiteModeProvider>
           <SiteLoader />
-
           <TopBarWrapper />
-
           {children}
         </SiteModeProvider>
       </body>
