@@ -18,7 +18,7 @@ interface SiteModeContextType {
 const SiteModeContext =
   createContext<SiteModeContextType | null>(null);
 
-const STORAGE_KEY = "rehaan-site-mode";
+const STORAGE_KEY = "rehan-consultants-site-mode";
 
 export function SiteModeProvider({
   children,

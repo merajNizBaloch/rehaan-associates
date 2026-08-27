@@ -82,7 +82,7 @@ export default function SiteLoader() {
               className="mb-10 text-center"
             >
               <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#4F8FD2]">
-                REHAAN & ASSOCIATES
+                REHAN CONSULTANTS
               </p>
 
               <h1 className="mt-3 text-[clamp(2rem,7vw,3.5rem)] font-medium tracking-[-0.05em] text-white">

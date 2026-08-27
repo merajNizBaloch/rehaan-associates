@@ -311,7 +311,7 @@ function OfficeBuilding({
           color: c.blue,
         }}
       >
-        REHAAN & ASSOCIATES
+        REHAN CONSULTANTS
       </span>
     </motion.div>
   );
@@ -490,7 +490,7 @@ function ContactDetails({
     {
       icon: <MapPin size={19} strokeWidth={1.5} />,
       label: "Office",
-      title: "Rehaan & Associates",
+      title: "Rehan Consultants",
       text: "Balochistan, Pakistan",
     },
     {
@@ -897,7 +897,7 @@ export default function ContactPage() {
                 : "text-[#4F8FD2]"
             }`}
           >
-            REHAAN & ASSOCIATES
+            REHAN CONSULTANTS
           </span>
         </div>
 
@@ -922,7 +922,7 @@ export default function ContactPage() {
                 : "text-[#4F8FD2]"
             }`}
           >
-            Contact Rehaan & Associates
+            Contact Rehan Consultants
           </motion.p>
 
           <motion.h1
@@ -1039,7 +1039,7 @@ export default function ContactPage() {
       <footer className="border-t border-white/10 bg-[#07111F] px-6 py-8 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-[10px] uppercase tracking-[0.18em] text-[#9BA7B4] sm:flex-row sm:items-center sm:justify-between">
           <span>
-            REHAAN & ASSOCIATES
+            REHAN CONSULTANTS
           </span>
 
           <span>

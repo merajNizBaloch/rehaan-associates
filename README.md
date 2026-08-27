@@ -1,4 +1,4 @@
-# Rehaan & Associates — Complete Visual Redesign
+# Rehan Consultants — Complete Visual Redesign
 
 This version intentionally abandons the previous architecture-portfolio composition.
 

@@ -1090,7 +1090,7 @@ function ProjectCard({
                   : "text-[var(--muted)]"
               }`}
             >
-              Rehaan & Associates
+              Rehan Consultants
             </span>
 
             <span
@@ -1801,7 +1801,7 @@ export default function ProjectsPage() {
       <footer className="border-t border-white/10 bg-[#07111F] px-6 py-8 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-[10px] uppercase tracking-[0.18em] text-[#9BA7B4] sm:flex-row sm:items-center sm:justify-between">
           <span>
-            REHAAN & ASSOCIATES
+            REHAN CONSULTANTS
           </span>
 
           <span>

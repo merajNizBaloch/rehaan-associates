@@ -7,7 +7,7 @@ import { SiteModeProvider } from "@/components/SiteModeProvider";
 
 export const metadata: Metadata = {
   title:
-    "Rehaan & Associates | Civil Engineering",
+    "Rehan Consultants | Civil Engineering",
   description:
     "Civil engineering and infrastructure across Balochistan.",
 };

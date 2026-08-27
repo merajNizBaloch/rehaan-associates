@@ -297,7 +297,7 @@ export default function TopBar({
 
             <div>
               <div className="text-[10px] font-semibold tracking-[0.12em] text-[var(--ink)]">
-                REHAAN & ASSOCIATES
+                REHAN CONSULTANTS
               </div>
 
               <div className="mt-[2px] text-[7px] uppercase tracking-[0.23em] text-[var(--muted)]">
@@ -485,7 +485,7 @@ export default function TopBar({
 
             <div>
               <div className="text-[9px] font-semibold tracking-[0.1em] text-[var(--ink)]">
-                REHAAN & ASSOCIATES
+                REHAN CONSULTANTS
               </div>
 
               <div className="mt-[2px] text-[7px] uppercase tracking-[0.18em] text-[var(--muted)]">

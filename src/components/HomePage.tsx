@@ -710,7 +710,7 @@ function HeroText({ mode }: HeroTextProps) {
             isSite ? "text-[#5C574E]" : "text-[#9BA7B4]"
           }`}
         >
-          Rehaan & Associates provides multidisciplinary architectural,
+          Rehan Consultants provides multidisciplinary architectural,
           engineering, infrastructure, transportation, cost consultancy and
           project management services for residential, commercial, industrial
           and public-sector projects.
@@ -827,7 +827,7 @@ function AboutSection() {
 
           <div>
             <p className="max-w-3xl text-[16px] leading-8 text-[var(--muted)] md:text-[18px]">
-              Rehaan & Associates is a multidisciplinary consultancy providing
+              Rehan Consultants is a multidisciplinary consultancy providing
               professional services in architecture, engineering,
               transportation, infrastructure, quantity surveying and project
               management.
@@ -1128,7 +1128,7 @@ export default function HomePage() {
 
       <footer className="border-t border-white/10 bg-[#07111F] px-6 py-8 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-[10px] uppercase tracking-[0.18em] text-[#9BA7B4] sm:flex-row sm:items-center sm:justify-between">
-          <span>REHAAN & ASSOCIATES</span>
+          <span>REHAN CONSULTANTS</span>
 
           <span>
             Architecture · Engineering · Infrastructure · Project Management
