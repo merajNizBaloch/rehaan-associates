@@ -305,14 +305,6 @@ function OfficeBuilding({
       />
 
       {/* Label */}
-      <span
-        className="absolute -bottom-[22px] left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-[9px] font-semibold uppercase tracking-[0.11em]"
-        style={{
-          color: c.blue,
-        }}
-      >
-        REHAN CONSULTANTS
-      </span>
     </motion.div>
   );
 }
@@ -1034,6 +1026,35 @@ export default function ContactPage() {
 
       {/* Enquiry form */}
       <ContactForm />
-    </main>
+    
+      {/* Footer */}
+      
+
+
+
+<footer className="border-t border-white/10 bg-[#07111F] px-6 py-8 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-[10px] uppercase tracking-[0.18em] text-[#9BA7B4] sm:flex-row sm:items-center sm:justify-between">
+          <span className="whitespace-nowrap">
+  Designed and Developed by{" "}
+  <a
+    href="https://wa.me/923336077281"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline underline-offset-2 decoration-white/50 transition-colors hover:decoration-white hover:text-white"
+  >
+    TechCraft
+  </a>
+</span>
+
+          <span>
+            Engineering · Quantity Surveying · Infrastructure · Architecture · Project Management
+          </span>
+
+          <span>
+            © {new Date().getFullYear()}
+          </span>
+        </div>
+      </footer>
+</main>
   );
 }
