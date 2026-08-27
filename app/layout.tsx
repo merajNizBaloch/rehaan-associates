@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import OrganizationSchema from "@/components/OrganizationSchema";
-import SiteFooter from "@/components/SiteFooter";
 import SiteLoader from "@/components/SiteLoader";
 import TopBarWrapper from "@/components/navigation/TopBarWrapper";
 import { SiteModeProvider } from "@/components/SiteModeProvider";
@@ -126,7 +125,6 @@ export default function RootLayout({
           <SiteLoader />
           <TopBarWrapper />
           {children}
-          <SiteFooter />
         </SiteModeProvider>
       </body>
     </html>
