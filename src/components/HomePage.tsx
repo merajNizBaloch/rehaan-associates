@@ -1091,7 +1091,7 @@ function ContactCTA() {
 
         <div className="mt-10 flex justify-center">
           <EngineeringButton
-            href="#contact-form"
+            href="/contact"
             variant="primary"
             className="!bg-[#1557A0] hover:!bg-[#4F8FD2]"
           >
