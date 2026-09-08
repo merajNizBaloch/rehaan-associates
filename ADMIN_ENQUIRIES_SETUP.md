@@ -1,6 +1,6 @@
 # Rehan Consultants — Enquiries Admin Setup
 
-The application code expects a Cloudflare D1 database binding named `DB` and two admin authentication secrets. Email notifications are optional and use Resend.
+The application code expects a Cloudflare D1 database binding named `DB` and two admin authentication secrets. Email notifications use Resend.
 
 ## 1. D1 database
 
@@ -41,17 +41,25 @@ In **Workers & Pages → rehanconsultant → Settings → Variables and Secrets*
 
 The application stores only a signed, HttpOnly, Secure session cookie in the browser. The password and signing secret remain server-side.
 
-## 4. Optional email notifications
+## 4. Email notifications
 
 The enquiry is always saved to D1 first. Email delivery is best-effort and does not block saving the enquiry.
 
-To enable email notifications, configure:
+The application now has these defaults:
+
+- Recipient: `reekij364@gmail.com`
+- Sender: `Rehan Consultants <onboarding@resend.dev>`
+
+To activate notifications, only one Cloudflare secret is required initially:
 
 - `RESEND_API_KEY`
-- `ENQUIRY_NOTIFICATION_EMAIL=reekij364@gmail.com` (optional; this is also the code default)
-- `ENQUIRY_FROM_EMAIL=Rehan Consultants <enquiries@YOUR_VERIFIED_DOMAIN>`
 
-Verify the sending domain in Resend before using the production sender address.
+Create a Resend API key with sending access and save it as the `RESEND_API_KEY` encrypted secret on Worker `rehanconsultant`.
+
+For production sending from a Rehan Consultants address later, verify `rehanconsultants.com` in Resend and optionally configure:
+
+- `ENQUIRY_NOTIFICATION_EMAIL` — overrides the default recipient
+- `ENQUIRY_FROM_EMAIL` — overrides the default sender
 
 ## 5. Domains
 
@@ -65,7 +73,7 @@ A protected fallback is also available at:
 
 ## 6. Contact form flow
 
-`/contact` → `POST /api/enquiries` → D1 `enquiries` table → optional email notification → `admin.rehanconsultants.com`
+`/contact` → `POST /api/enquiries` → D1 `enquiries` table → email notification → `admin.rehanconsultants.com`
 
 The dashboard supports:
 
