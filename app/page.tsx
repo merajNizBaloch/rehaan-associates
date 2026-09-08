@@ -1,12 +1,29 @@
+import type { Metadata } from "next";
 import { headers } from "next/headers";
 
 import AdminPortal from "@/components/admin/AdminPortal";
 import HomePage from "@/components/HomePage";
 
-export default async function Page() {
-  const host = (await headers()).get("host")?.split(":")[0].toLowerCase();
+async function requestHost() {
+  return (await headers()).get("host")?.split(":")[0].toLowerCase();
+}
 
-  if (host === "admin.rehanconsultants.com") {
+export async function generateMetadata(): Promise<Metadata> {
+  if ((await requestHost()) === "admin.rehanconsultants.com") {
+    return {
+      title: "Enquiries Admin",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  return {};
+}
+
+export default async function Page() {
+  if ((await requestHost()) === "admin.rehanconsultants.com") {
     return <AdminPortal />;
   }
 
