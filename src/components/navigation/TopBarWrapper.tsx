@@ -1,16 +1,16 @@
 "use client";
 
-import TopBar from "./TopBar";
+import EnquiryFormBridge from "../EnquiryFormBridge";
 import { useSiteMode } from "../SiteModeProvider";
+import TopBar from "./TopBar";
 
 export default function TopBarWrapper() {
-  const { mode, setMode } =
-    useSiteMode();
+  const { mode, setMode } = useSiteMode();
 
   return (
-    <TopBar
-      mode={mode}
-      setMode={setMode}
-    />
+    <>
+      <EnquiryFormBridge />
+      <TopBar mode={mode} setMode={setMode} />
+    </>
   );
 }
