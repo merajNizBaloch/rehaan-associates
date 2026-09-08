@@ -2,14 +2,14 @@
 
 The application code expects a Cloudflare D1 database binding named `DB` and two admin authentication secrets. Email notifications are optional and use Resend.
 
-## 1. Create the D1 database
+## 1. D1 database
 
-In Cloudflare:
+Database:
 
-1. Open **Storage & databases → D1 SQL Database**.
-2. Create a database named `rehan-enquiries`.
-3. Copy its database ID.
-4. Run the SQL in `migrations/0001_create_enquiries.sql` in the D1 Console.
+- Name: `rehan-enquiries`
+- Database ID: `b2206cc1-fa65-4b20-baf8-dca656037dfa`
+
+Run the SQL in `migrations/0001_create_enquiries.sql` in the Cloudflare D1 Console.
 
 ## 2. Bind D1 to the Worker
 
@@ -20,21 +20,21 @@ Add a D1 binding with:
 - Variable name: `DB`
 - Database: `rehan-enquiries`
 
-For Git/Wrangler deployments, also add the D1 binding to `wrangler.jsonc` before merging this feature branch:
+The repository `wrangler.jsonc` is already configured with:
 
 ```jsonc
 "d1_databases": [
   {
     "binding": "DB",
     "database_name": "rehan-enquiries",
-    "database_id": "YOUR_DATABASE_ID"
+    "database_id": "b2206cc1-fa65-4b20-baf8-dca656037dfa"
   }
 ]
 ```
 
 ## 3. Configure admin authentication
 
-In **Workers & Pages → rehanconsultant → Settings → Variables and Secrets**, add these as secrets:
+In **Workers & Pages → rehanconsultant → Settings → Variables and Secrets**, add these as encrypted secrets:
 
 - `ADMIN_PASSWORD` — the password used to sign in at `admin.rehanconsultants.com`
 - `ADMIN_SESSION_SECRET` — a long random value (32+ random characters recommended)
