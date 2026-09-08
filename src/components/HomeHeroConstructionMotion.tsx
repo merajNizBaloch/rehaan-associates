@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 import type { SiteMode } from "@/components/navigation/TopBar";
 
@@ -12,7 +11,7 @@ type Props = {
 function Worker({ left, type }: { left: string; type: "survey" | "shovel" }) {
   return (
     <motion.div
-      className="absolute bottom-[34px] h-[38px] w-[22px]"
+      className="absolute bottom-[35px] hidden h-[38px] w-[22px] sm:block"
       style={{ left }}
       animate={type === "survey" ? { y: [0, -2, 0] } : { rotate: [0, -4, 3, 0] }}
       transition={{ duration: type === "survey" ? 2.4 : 1.8, repeat: Infinity, ease: "easeInOut" }}
@@ -38,90 +37,77 @@ function Worker({ left, type }: { left: string; type: "survey" | "shovel" }) {
 }
 
 export default function HomeHeroConstructionMotion({ mode }: Props) {
-  const [visible, setVisible] = useState(true);
   const reduceMotion = useReducedMotion();
   const isSite = mode === "site";
-
-  useEffect(() => {
-    const update = () => setVisible(window.scrollY < window.innerHeight * 0.72);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
 
   return (
     <motion.div
       aria-hidden="true"
       initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 18 }}
-      transition={{ duration: 0.35 }}
-      className="pointer-events-none fixed inset-x-0 bottom-[2.5vh] z-[6] hidden h-[132px] md:block"
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, delay: 0.28 }}
+      className="pointer-events-none relative mx-auto mt-8 h-[118px] w-full max-w-5xl"
     >
-      <div className="relative mx-auto h-full w-[min(1180px,92vw)]">
+      <div className="absolute bottom-[18px] left-[3%] right-[3%] h-[22px] rounded-[4px] bg-black/10" />
+      <div
+        className="absolute bottom-[19px] left-[3%] right-[3%] h-[18px] rounded-[3px] border-y"
+        style={{
+          backgroundColor: isSite ? "#5D5A53" : "#171F2A",
+          borderColor: isSite ? "rgba(21,87,160,.35)" : "rgba(79,143,210,.28)",
+        }}
+      >
         <div
-          className="absolute bottom-[18px] left-[2%] right-[2%] h-[22px] rounded-[4px] border-y"
+          className="absolute left-[2%] right-[2%] top-1/2 h-px -translate-y-1/2"
           style={{
-            backgroundColor: isSite ? "#5D5A53" : "#171F2A",
-            borderColor: isSite ? "rgba(21,87,160,.35)" : "rgba(79,143,210,.28)",
+            background: "repeating-linear-gradient(90deg, #D8A928 0 24px, transparent 24px 42px)",
+            opacity: isSite ? 0.9 : 0.65,
           }}
-        >
-          <div
-            className="absolute left-[2%] right-[2%] top-1/2 h-px -translate-y-1/2"
-            style={{
-              background: `repeating-linear-gradient(90deg, #D8A928 0 24px, transparent 24px 42px)`,
-              opacity: isSite ? 0.9 : 0.65,
-            }}
-          />
-        </div>
+        />
+      </div>
 
-        <div className="absolute bottom-[40px] left-[2%] right-[2%] h-px bg-[var(--blue)]/20" />
-        <span className="absolute bottom-[4px] left-[2%] text-[8px] uppercase tracking-[0.2em] text-[var(--muted)]">CH 00+000</span>
-        <span className="absolute bottom-[4px] right-[2%] text-[8px] uppercase tracking-[0.2em] text-[var(--muted)]">CH 00+500</span>
+      <div className="absolute bottom-[40px] left-[3%] right-[3%] h-px bg-[var(--blue)]/20" />
 
-        <div className="absolute bottom-[44px] left-[9%]">
-          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
-          <span className="absolute left-1/2 top-[-12px] h-16 w-px -translate-x-1/2 bg-[var(--blue)]/25" />
-          <span className="absolute -left-2 -top-7 whitespace-nowrap text-[8px] uppercase tracking-[0.18em] text-[var(--blue)]">BM-01</span>
-        </div>
+      <span className="absolute bottom-[2px] left-[3%] text-[8px] uppercase tracking-[0.2em] text-[var(--muted)]">CH 04+200</span>
+      <span className="absolute bottom-[2px] right-[3%] text-[8px] uppercase tracking-[0.2em] text-[var(--muted)]">CH 04+500</span>
 
-        <div className="absolute bottom-[44px] right-[10%]">
-          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
-          <span className="absolute left-1/2 top-[-12px] h-16 w-px -translate-x-1/2 bg-[var(--blue)]/25" />
-          <span className="absolute -left-3 -top-7 whitespace-nowrap text-[8px] uppercase tracking-[0.18em] text-[var(--blue)]">ST-04</span>
-        </div>
+      <div className="absolute bottom-[46px] left-[10%] hidden sm:block">
+        <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+        <span className="absolute left-1/2 top-[-12px] h-16 w-px -translate-x-1/2 bg-[var(--blue)]/25" />
+        <span className="absolute -left-2 -top-7 whitespace-nowrap text-[8px] uppercase tracking-[0.18em] text-[var(--blue)]">BM-01</span>
+      </div>
 
-        <Worker left="25%" type="shovel" />
-        <Worker left="64%" type="survey" />
+      <div className="absolute bottom-[46px] right-[10%] hidden sm:block">
+        <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+        <span className="absolute left-1/2 top-[-12px] h-16 w-px -translate-x-1/2 bg-[var(--blue)]/25" />
+        <span className="absolute -left-3 -top-7 whitespace-nowrap text-[8px] uppercase tracking-[0.18em] text-[var(--blue)]">ST-04</span>
+      </div>
 
+      <Worker left="25%" type="shovel" />
+      <Worker left="64%" type="survey" />
+
+      <motion.div
+        className="absolute bottom-[39px] left-[8%] h-[36px] w-[72px]"
+        animate={reduceMotion ? undefined : { x: ["0%", "760%", "0%"] }}
+        transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="absolute bottom-[7px] left-[5px] h-[21px] w-[49px] rounded-[5px_8px_4px_4px] bg-[#D8A928] shadow-[0_4px_10px_rgba(0,0,0,.15)]" />
+        <div className="absolute bottom-[28px] left-[29px] h-[16px] w-[22px] rounded-t-[5px] border border-[var(--blue)] bg-[var(--surface)]" />
         <motion.div
-          className="absolute bottom-[40px] left-[6%] h-[35px] w-[72px]"
-          animate={reduceMotion ? undefined : { x: ["0vw", "53vw", "0vw"] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="absolute bottom-[7px] left-[5px] h-[21px] w-[49px] rounded-[5px_8px_4px_4px] bg-[#D8A928] shadow-[0_4px_10px_rgba(0,0,0,.15)]" />
-          <div className="absolute bottom-[28px] left-[29px] h-[16px] w-[22px] rounded-t-[5px] border border-[var(--blue)] bg-[var(--surface)]" />
-          <div className="absolute bottom-[10px] right-0 h-[30px] w-[30px] rounded-full border-[4px] border-[#282A2B] bg-[#8E959B]" />
-          <div className="absolute bottom-[7px] left-0 h-[17px] w-[17px] rounded-full border-[4px] border-[#282A2B] bg-[#8E959B]" />
-          <motion.span
-            className="absolute -right-6 top-[3px] h-px w-6 bg-[var(--blue)]/45"
-            animate={reduceMotion ? undefined : { scaleX: [0.4, 1, 0.4] }}
-            transition={{ duration: 1.4, repeat: Infinity }}
-          />
-        </motion.div>
-
+          className="absolute bottom-[9px] right-0 h-[30px] w-[30px] rounded-full border-[4px] border-[#282A2B] bg-[#8E959B]"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+        />
         <motion.div
-          className="absolute bottom-[76px] left-1/2 h-px w-[34%] -translate-x-1/2 bg-[var(--blue)]/20"
-          animate={reduceMotion ? undefined : { opacity: [0.25, 0.7, 0.25] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span className="absolute left-0 top-[-5px] h-3 w-px bg-[var(--blue)]/35" />
-          <span className="absolute right-0 top-[-5px] h-3 w-px bg-[var(--blue)]/35" />
-          <span className="absolute left-1/2 top-[-16px] -translate-x-1/2 bg-[var(--paper)]/70 px-2 text-[8px] uppercase tracking-[0.18em] text-[var(--blue)]">SITE WORKFLOW</span>
-        </motion.div>
+          className="absolute bottom-[7px] left-0 h-[17px] w-[17px] rounded-full border-[4px] border-[#282A2B] bg-[#8E959B]"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 0.65, repeat: Infinity, ease: "linear" }}
+        />
+      </motion.div>
+
+      <div className="absolute bottom-[80px] left-1/2 hidden -translate-x-1/2 items-center gap-3 sm:flex">
+        <span className="h-px w-10 bg-[var(--blue)]/25" />
+        <span className="text-[8px] uppercase tracking-[0.2em] text-[var(--blue)]">SITE WORKFLOW</span>
+        <span className="h-px w-10 bg-[var(--blue)]/25" />
       </div>
     </motion.div>
   );

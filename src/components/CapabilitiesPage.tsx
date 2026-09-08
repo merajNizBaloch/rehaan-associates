@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  BadgeCheck,
   Building2,
   Calculator,
   ClipboardCheck,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 
 import BrickCursor from "@/components/cursor/BrickCursor";
+import CapabilitiesHeroMotion from "@/components/CapabilitiesHeroMotion";
 import EngineeringButton from "@/components/EngineeringButton";
 import { useSiteMode } from "@/components/SiteModeProvider";
 
@@ -97,24 +97,69 @@ export default function CapabilitiesPage() {
       <BrickCursor />
 
       <section
-        className="relative flex min-h-[82vh] items-center overflow-hidden px-6 pb-20 pt-36"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-20 pt-28 md:pt-32"
         style={{
           backgroundColor: isSite ? "#C7B792" : "#07111F",
           backgroundImage: isSite
-            ? "linear-gradient(rgba(21,87,160,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(21,87,160,.05) 1px,transparent 1px)"
-            : "linear-gradient(rgba(79,143,210,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,143,210,.05) 1px,transparent 1px)",
-          backgroundSize: "56px 56px",
+            ? "linear-gradient(rgba(21,87,160,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(21,87,160,.05) 1px,transparent 1px),radial-gradient(circle at 50% 38%,rgba(255,248,228,.2),transparent 34%)"
+            : "linear-gradient(rgba(79,143,210,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,143,210,.05) 1px,transparent 1px),radial-gradient(circle at 50% 40%,rgba(79,143,210,.14),transparent 36%)",
+          backgroundSize: "56px 56px,56px 56px,auto",
         }}
       >
-        <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
-          <div>
-            <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--blue)]">Capabilities · not a past-project list</motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="mt-6 text-[clamp(3.3rem,7vw,7rem)] font-medium leading-[0.9] tracking-[-0.065em]">Project types<br /><span className="text-[var(--blue)]">we are equipped to serve.</span></motion.h1>
+        <div className="pointer-events-none absolute left-[7%] top-[27%] hidden lg:block">
+          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+          <span className="absolute left-1/2 top-[-18px] h-24 w-px bg-[var(--blue)]/25" />
+          <span className="absolute -left-1 -top-9 whitespace-nowrap text-[8px] uppercase tracking-[0.2em] text-[var(--blue)]">CAPABILITY 01</span>
+        </div>
+
+        <div className="pointer-events-none absolute right-[7%] top-[31%] hidden lg:block">
+          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+          <span className="absolute left-1/2 top-[-18px] h-28 w-px bg-[var(--blue)]/25" />
+          <span className="absolute -left-1 -top-9 whitespace-nowrap text-[8px] uppercase tracking-[0.2em] text-[var(--blue)]">BUILT ENVIRONMENT</span>
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--blue)]"
+          >
+            Engineering capabilities
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-[clamp(3.6rem,8vw,8rem)] font-medium leading-[0.9] tracking-[-0.065em]"
+          >
+            From requirements
+            <br />
+            <span className="text-[var(--blue)]">to buildable solutions.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.18 }}
+            className="mx-auto mt-9 max-w-2xl text-[15px] leading-7 text-[var(--muted)] md:text-[17px]"
+          >
+            Different project types require different combinations of engineering, architecture, infrastructure,
+            quantity surveying and project delivery. These are the sectors and technical outputs we are equipped to support.
+          </motion.p>
+
+          <CapabilitiesHeroMotion mode={mode} />
+        </div>
+      </section>
+
+      <section className="border-y border-[var(--border)] bg-[var(--surface)] px-6 py-10 md:py-12">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--blue)]/10 text-[var(--blue)]">
+            <ShieldCheck size={22} strokeWidth={1.5} />
           </div>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }} className="rounded-[24px] border border-[var(--border)] bg-[var(--surface)]/75 p-7 backdrop-blur">
-            <div className="flex items-center gap-3 text-[var(--blue)]"><BadgeCheck size={22} /><span className="text-[10px] font-semibold uppercase tracking-[0.2em]">Professional engineering</span></div>
-            <p className="mt-5 text-[15px] leading-7 text-[var(--muted)]">Engineering services are delivered by engineers registered with the Pakistan Engineering Council (PEC). This page describes sectors, technical capabilities and deliverables—not completed-client-project claims.</p>
-          </motion.div>
+          <p className="mt-4 text-[9px] font-semibold uppercase tracking-[0.24em] text-[var(--blue)]">Professional engineering basis</p>
+          <p className="mx-auto mt-3 max-w-3xl text-[14px] leading-7 text-[var(--muted)]">Engineering services are delivered by engineers registered with the Pakistan Engineering Council (PEC). This page describes capability and project types, not completed-client-project claims.</p>
         </div>
       </section>
 
@@ -129,10 +174,22 @@ export default function CapabilitiesPage() {
             {sectors.map((sector, index) => {
               const Icon = sector.icon;
               return (
-                <motion.article key={sector.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-7">
-                  <div className="flex items-center justify-between"><Icon size={20} className="text-[var(--blue)]" /><span className="text-[9px] font-semibold tracking-[0.18em] text-[var(--blue)]">{String(index + 1).padStart(2, "0")}</span></div>
-                  <h3 className="mt-9 text-2xl font-medium tracking-[-0.035em]">{sector.title}</h3>
+                <motion.article
+                  key={sector.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.04 }}
+                  className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-7 transition-colors duration-300 hover:border-[var(--blue)]/35"
+                >
+                  <div className="flex items-center justify-between">
+                    <motion.div whileHover={{ rotate: -5, scale: 1.08 }}><Icon size={20} className="text-[var(--blue)]" /></motion.div>
+                    <span className="text-[9px] font-semibold tracking-[0.18em] text-[var(--blue)]">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mt-9 text-2xl font-medium tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-1">{sector.title}</h3>
                   <p className="mt-4 text-[14px] leading-7 text-[var(--muted)]">{sector.text}</p>
+                  <div className="mt-7 h-px w-8 bg-[var(--blue)]/30 transition-all duration-300 group-hover:w-16" />
                 </motion.article>
               );
             })}
@@ -151,13 +208,15 @@ export default function CapabilitiesPage() {
             {packages.map((group) => {
               const Icon = group.icon;
               return (
-                <div key={group.title} className="bg-[var(--paper)] p-7 md:p-9">
-                  <Icon size={20} className="text-[var(--blue)]" />
-                  <h3 className="mt-7 text-2xl font-medium tracking-[-0.035em]">{group.title}</h3>
+                <motion.div key={group.title} whileHover={{ y: -4 }} className="group bg-[var(--paper)] p-7 transition-colors duration-300 hover:bg-[var(--surface)] md:p-9">
+                  <Icon size={20} className="text-[var(--blue)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110" />
+                  <h3 className="mt-7 text-2xl font-medium tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-1">{group.title}</h3>
                   <div className="mt-6 grid gap-2 sm:grid-cols-2">
-                    {group.items.map((item) => <div key={item} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-[12px] text-[var(--muted)]">{item}</div>)}
+                    {group.items.map((item) => (
+                      <motion.div key={item} whileHover={{ x: 4 }} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-[12px] text-[var(--muted)] transition-colors hover:border-[var(--blue)]/30 hover:text-[var(--ink)]">{item}</motion.div>
+                    ))}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -173,7 +232,15 @@ export default function CapabilitiesPage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {sampleOutputs.map((item, index) => (
-              <motion.div key={item} initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.025 }} className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4">
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, x: 12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                whileHover={{ x: 5 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.025 }}
+                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition-colors hover:border-[var(--blue)]/35"
+              >
                 <FileText size={15} className="text-[var(--blue)]" /><span className="text-[13px]">{item}</span>
               </motion.div>
             ))}
