@@ -2,7 +2,7 @@
 
 import EnquiryFormBridge from "../EnquiryFormBridge";
 import { useSiteMode } from "../SiteModeProvider";
-import TopBar from "./TopBar";
+import TopBarV2 from "./TopBarV2";
 
 export default function TopBarWrapper() {
   const { mode, setMode } = useSiteMode();
@@ -10,7 +10,7 @@ export default function TopBarWrapper() {
   return (
     <>
       <EnquiryFormBridge />
-      <TopBar mode={mode} setMode={setMode} />
+      <TopBarV2 mode={mode} setMode={setMode} />
     </>
   );
 }
