@@ -11,5 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function AdminPage() {
-  return <AdminPortal />;
+  return (
+    <div className="!cursor-auto [&_*]:!cursor-auto">
+      <AdminPortal />
+    </div>
+  );
 }
