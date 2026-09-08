@@ -21,10 +21,10 @@ function escapeHtml(value: string) {
 export async function sendEnquiryEmail(enquiry: EnquiryNotification) {
   const env = getRuntimeEnv();
   const apiKey = env.RESEND_API_KEY;
-  const to = env.ENQUIRY_NOTIFICATION_EMAIL;
+  const to = env.ENQUIRY_NOTIFICATION_EMAIL || "reekij364@gmail.com";
   const from = env.ENQUIRY_FROM_EMAIL;
 
-  if (!apiKey || !to || !from) {
+  if (!apiKey || !from) {
     return { sent: false, reason: "Email notification variables are not configured." };
   }
 
