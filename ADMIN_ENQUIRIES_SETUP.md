@@ -48,7 +48,7 @@ The enquiry is always saved to D1 first. Email delivery is best-effort and does 
 To enable email notifications, configure:
 
 - `RESEND_API_KEY`
-- `ENQUIRY_NOTIFICATION_EMAIL=therehanconsultants@gmail.com`
+- `ENQUIRY_NOTIFICATION_EMAIL=reekij364@gmail.com` (optional; this is also the code default)
 - `ENQUIRY_FROM_EMAIL=Rehan Consultants <enquiries@YOUR_VERIFIED_DOMAIN>`
 
 Verify the sending domain in Resend before using the production sender address.
