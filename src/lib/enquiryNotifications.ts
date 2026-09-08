@@ -22,10 +22,11 @@ export async function sendEnquiryEmail(enquiry: EnquiryNotification) {
   const env = getRuntimeEnv();
   const apiKey = env.RESEND_API_KEY;
   const to = env.ENQUIRY_NOTIFICATION_EMAIL || "reekij364@gmail.com";
-  const from = env.ENQUIRY_FROM_EMAIL;
+  const from =
+    env.ENQUIRY_FROM_EMAIL || "Rehan Consultants <onboarding@resend.dev>";
 
-  if (!apiKey || !from) {
-    return { sent: false, reason: "Email notification variables are not configured." };
+  if (!apiKey) {
+    return { sent: false, reason: "RESEND_API_KEY is not configured." };
   }
 
   const response = await fetch("https://api.resend.com/emails", {
@@ -57,9 +58,17 @@ export async function sendEnquiryEmail(enquiry: EnquiryNotification) {
   });
 
   if (!response.ok) {
+    let detail = "";
+    try {
+      const body = (await response.json()) as { message?: string };
+      detail = body.message ? ` ${body.message}` : "";
+    } catch {
+      // Ignore malformed provider error bodies.
+    }
+
     return {
       sent: false,
-      reason: `Resend returned ${response.status}.`,
+      reason: `Resend returned ${response.status}.${detail}`,
     };
   }
 
