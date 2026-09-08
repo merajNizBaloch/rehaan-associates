@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
+import "./admin-cursor.css";
 
 import OrganizationSchema from "@/components/OrganizationSchema";
 import SiteLoader from "@/components/SiteLoader";
@@ -123,7 +124,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={isAdminHost ? "admin-cursor" : undefined}>
         <SiteModeProvider>
           {!isAdminHost && (
             <>
