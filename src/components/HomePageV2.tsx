@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  BadgeCheck,
   Building2,
   Calculator,
   ClipboardCheck,
@@ -19,6 +18,7 @@ import {
 
 import BrickCursor from "@/components/cursor/BrickCursor";
 import EngineeringButton from "@/components/EngineeringButton";
+import HomeHeroConstructionMotion from "@/components/HomeHeroConstructionMotion";
 import { useSiteMode } from "@/components/SiteModeProvider";
 
 const services = [
@@ -127,112 +127,90 @@ export default function HomePageV2() {
       <BrickCursor />
 
       <section
-        className="relative flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-32 md:pt-36"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pb-20 pt-28 md:pt-32"
         style={{
           backgroundColor: isSite ? "#C7B792" : "#07111F",
           backgroundImage: isSite
-            ? "linear-gradient(rgba(21,87,160,.045) 1px, transparent 1px),linear-gradient(90deg,rgba(21,87,160,.045) 1px,transparent 1px),radial-gradient(circle at 70% 30%,rgba(255,248,228,.25),transparent 32%)"
-            : "linear-gradient(rgba(79,143,210,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,143,210,.045) 1px,transparent 1px),radial-gradient(circle at 72% 32%,rgba(79,143,210,.16),transparent 35%)",
+            ? "linear-gradient(rgba(21,87,160,.045) 1px, transparent 1px),linear-gradient(90deg,rgba(21,87,160,.045) 1px,transparent 1px),radial-gradient(circle at 50% 35%,rgba(255,248,228,.24),transparent 34%)"
+            : "linear-gradient(rgba(79,143,210,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,143,210,.045) 1px,transparent 1px),radial-gradient(circle at 50% 38%,rgba(79,143,210,.16),transparent 37%)",
           backgroundSize: "56px 56px,56px 56px,auto",
         }}
       >
-        <div className="pointer-events-none absolute left-[6%] top-[24%] hidden lg:block">
-          <div className="h-3 w-3 rounded-full border border-[var(--blue)]" />
-          <div className="absolute left-1/2 top-3 h-28 w-px bg-[var(--blue)]/30" />
-          <span className="absolute -left-2 -top-7 whitespace-nowrap text-[8px] uppercase tracking-[0.22em] text-[var(--blue)]">PEC · ENGINEERING</span>
+        <div className="pointer-events-none absolute left-[7%] top-[27%] hidden lg:block">
+          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+          <span className="absolute left-1/2 top-[-18px] h-24 w-px bg-[var(--blue)]/25" />
+          <span className="absolute -left-1 -top-9 whitespace-nowrap text-[8px] uppercase tracking-[0.2em] text-[var(--blue)]">ENGINEERING</span>
         </div>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-[1.12fr_.88fr] lg:items-center">
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--blue)]"
-            >
-              Quetta · Balochistan · Pakistan
-            </motion.p>
+        <div className="pointer-events-none absolute right-[7%] top-[31%] hidden lg:block">
+          <span className="block h-3 w-3 rounded-full border border-[var(--blue)]" />
+          <span className="absolute left-1/2 top-[-18px] h-28 w-px bg-[var(--blue)]/25" />
+          <span className="absolute -left-1 -top-9 whitespace-nowrap text-[8px] uppercase tracking-[0.2em] text-[var(--blue)]">BALOCHISTAN</span>
+        </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-5xl text-[clamp(3.4rem,7vw,7.4rem)] font-medium leading-[0.9] tracking-[-0.065em]"
-            >
-              Engineering
-              <br />
-              <span className="text-[var(--blue)]">the land forward.</span>
-            </motion.h1>
+        <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--blue)]"
+          >
+            Quetta · Balochistan · Pakistan
+          </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.15 }}
-              className="mt-8 max-w-2xl text-[15px] leading-8 text-[var(--muted)] md:text-[17px]"
-            >
-              Rehan Consultants is a multidisciplinary consultancy for civil and structural engineering,
-              architecture, infrastructure, quantity surveying, construction support and project management.
-            </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-[clamp(3.6rem,8vw,8rem)] font-medium leading-[0.9] tracking-[-0.065em]"
+          >
+            Engineering
+            <br />
+            <span className="text-[var(--blue)]">the land forward.</span>
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.28 }}
-              className="mt-9 flex flex-wrap gap-3"
-            >
-              <EngineeringButton href="/contact" variant="primary">Request consultation</EngineeringButton>
-              <EngineeringButton href="/capabilities" variant="secondary">Explore capabilities</EngineeringButton>
-            </motion.div>
-          </div>
+          <HomeHeroConstructionMotion mode={mode} />
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.18 }}
+            className="mx-auto mt-8 max-w-3xl text-[15px] leading-8 text-[var(--muted)] md:text-[17px]"
+          >
+            Rehan Consultants is a multidisciplinary consultancy for civil and structural engineering,
+            architecture, infrastructure, quantity surveying, construction support and project management.
+          </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="relative"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.34 }}
+            className="mt-9 flex flex-wrap justify-center gap-3"
           >
-            <div className="rounded-[28px] border border-[var(--border)] bg-[var(--surface)]/80 p-7 shadow-[0_24px_80px_rgba(0,0,0,.12)] backdrop-blur md:p-9">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--blue)]/10 text-[var(--blue)]">
-                  <BadgeCheck size={25} strokeWidth={1.6} />
-                </div>
-                <div>
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Professional credentials</p>
-                  <h2 className="mt-1 text-xl font-medium tracking-[-0.03em]">PEC-registered engineering professionals</h2>
-                </div>
-              </div>
-
-              <p className="mt-6 text-[14px] leading-7 text-[var(--muted)]">
-                Engineering services are undertaken by engineers registered with the Pakistan Engineering Council (PEC),
-                supporting responsible design, technical documentation, safety and professional accountability.
-              </p>
-
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {["Civil & structural", "Infrastructure", "Cost & quantities", "Project delivery"].map((item) => (
-                  <div key={item} className="rounded-xl border border-[var(--border)] bg-[var(--paper)]/60 px-4 py-3 text-[11px] font-medium text-[var(--ink)]">
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-7 border-t border-[var(--border)] pt-5 text-[9px] uppercase tracking-[0.2em] text-[var(--muted)]">
-                Technical work · documented · coordinated · accountable
-              </div>
-            </div>
+            <EngineeringButton href="/contact" variant="primary">Request consultation</EngineeringButton>
+            <EngineeringButton href="/capabilities" variant="secondary">Explore capabilities</EngineeringButton>
           </motion.div>
         </div>
       </section>
 
-      <section className="border-y border-[var(--border)] bg-[var(--surface)] px-6 py-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="text-[var(--blue)]" size={22} />
-            <div>
-              <p className="text-sm font-medium">Engineering backed by professional credentials</p>
-              <p className="mt-1 text-xs text-[var(--muted)]">PEC-registered engineers · multidisciplinary coordination · technical documentation</p>
-            </div>
+      <section className="border-y border-[var(--border)] bg-[var(--surface)] px-6 py-12 md:py-14">
+        <div className="mx-auto max-w-5xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--blue)]/10 text-[var(--blue)]"
+          >
+            <ShieldCheck size={24} strokeWidth={1.5} />
+          </motion.div>
+          <p className="mt-5 text-[9px] font-semibold uppercase tracking-[0.24em] text-[var(--blue)]">Professional credentials</p>
+          <h2 className="mx-auto mt-3 max-w-3xl text-2xl font-medium tracking-[-0.035em] md:text-3xl">Engineering services delivered by PEC-registered professionals.</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-[14px] leading-7 text-[var(--muted)]">Professional engineering responsibility, disciplined technical documentation, multidisciplinary coordination and practical project delivery.</p>
+          <div className="mx-auto mt-7 flex max-w-3xl flex-wrap justify-center gap-2">
+            {["Civil & structural", "Infrastructure", "Cost & quantities", "Project delivery"].map((item) => (
+              <span key={item} className="rounded-full border border-[var(--border)] bg-[var(--paper)] px-4 py-2 text-[9px] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">{item}</span>
+            ))}
           </div>
-          <EngineeringButton href="/contact" variant="secondary">Discuss a project</EngineeringButton>
         </div>
       </section>
 
@@ -254,13 +232,15 @@ export default function HomePageV2() {
                   key={service.title}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.04 }}
-                  className="bg-[var(--surface)] p-7 transition hover:bg-[var(--paper)]"
+                  className="group bg-[var(--surface)] p-7 transition-colors duration-300 hover:bg-[var(--paper)]"
                 >
-                  <Icon size={21} strokeWidth={1.5} className="text-[var(--blue)]" />
-                  <h3 className="mt-8 text-xl font-medium tracking-[-0.03em]">{service.title}</h3>
+                  <motion.div whileHover={{ rotate: -4, scale: 1.08 }} className="w-fit"><Icon size={21} strokeWidth={1.5} className="text-[var(--blue)]" /></motion.div>
+                  <h3 className="mt-8 text-xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-1">{service.title}</h3>
                   <p className="mt-4 text-[14px] leading-7 text-[var(--muted)]">{service.text}</p>
+                  <div className="mt-7 h-px w-8 origin-left bg-[var(--blue)]/35 transition-all duration-300 group-hover:w-16" />
                 </motion.article>
               );
             })}
@@ -280,9 +260,7 @@ export default function HomePageV2() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--blue)]">Project types we serve</p>
                 <h2 className="mt-5 text-4xl font-medium leading-[0.95] tracking-[-0.05em] md:text-6xl">Built for different project contexts.</h2>
               </div>
-              <p className="max-w-2xl text-[15px] leading-7 text-[var(--muted)] lg:justify-self-end">
-                These are sectors and project types Rehan Consultants is equipped to support. They are presented as capabilities, not as a list of completed client projects.
-              </p>
+              <p className="max-w-2xl text-[15px] leading-7 text-[var(--muted)] lg:justify-self-end">These are sectors and project types Rehan Consultants is equipped to support. They are presented as capabilities, not as a list of completed client projects.</p>
             </div>
           </Reveal>
 
@@ -292,15 +270,17 @@ export default function HomePageV2() {
                 key={sector}
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.04 }}
-                className="group rounded-2xl border border-[var(--border)] bg-[var(--paper)] p-6"
+                className="group rounded-2xl border border-[var(--border)] bg-[var(--paper)] p-6 transition-colors duration-300 hover:border-[var(--blue)]/35"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[9px] font-semibold tracking-[0.18em] text-[var(--blue)]">{String(index + 1).padStart(2, "0")}</span>
-                  <Ruler size={15} className="text-[var(--blue)]/60" />
+                  <Ruler size={15} className="text-[var(--blue)]/60 transition-transform duration-300 group-hover:rotate-6" />
                 </div>
-                <p className="mt-10 text-xl font-medium tracking-[-0.03em]">{sector}</p>
+                <p className="mt-10 text-xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-1">{sector}</p>
+                <div className="mt-5 h-px w-8 bg-[var(--blue)]/30 transition-all duration-300 group-hover:w-14" />
               </motion.div>
             ))}
           </div>
@@ -327,9 +307,10 @@ export default function HomePageV2() {
                 key={item}
                 initial={{ opacity: 0, x: 14 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                whileHover={{ x: 5 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: index * 0.025 }}
-                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4"
+                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition-colors hover:border-[var(--blue)]/35"
               >
                 <FileText size={15} className="shrink-0 text-[var(--blue)]" />
                 <span className="text-[13px] text-[var(--ink)]">{item}</span>
@@ -349,11 +330,11 @@ export default function HomePageV2() {
 
           <div className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-white/10 bg-white/10 md:grid-cols-2">
             {reasons.map((reason, index) => (
-              <div key={reason.title} className="bg-[#0D1927] p-7 md:p-8">
+              <motion.div key={reason.title} whileHover={{ y: -4 }} className="group bg-[#0D1927] p-7 transition-colors hover:bg-[#112033] md:p-8">
                 <span className="text-[9px] font-semibold tracking-[0.18em] text-[#4F8FD2]">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-7 text-xl font-medium tracking-[-0.03em]">{reason.title}</h3>
+                <h3 className="mt-7 text-xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-1">{reason.title}</h3>
                 <p className="mt-4 text-[14px] leading-7 text-[#9BA7B4]">{reason.text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -370,11 +351,11 @@ export default function HomePageV2() {
 
           <div className="mt-14 grid gap-3 lg:grid-cols-5">
             {process.map(([number, title, text]) => (
-              <div key={number} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <motion.div key={number} whileHover={{ y: -5 }} className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 transition-colors hover:border-[var(--blue)]/35">
                 <span className="text-[9px] font-semibold tracking-[0.18em] text-[var(--blue)]">{number}</span>
-                <h3 className="mt-8 text-lg font-medium">{title}</h3>
+                <h3 className="mt-8 text-lg font-medium transition-transform duration-300 group-hover:translate-x-1">{title}</h3>
                 <p className="mt-3 text-[13px] leading-6 text-[var(--muted)]">{text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -389,7 +370,7 @@ export default function HomePageV2() {
             <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-[var(--muted)]">Request a consultation, discuss a site visit, or send your project requirements for an initial technical conversation.</p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <EngineeringButton href="/contact" variant="primary">Request consultation</EngineeringButton>
-              <a href="https://wa.me/923178921361?text=Hello%20Rehan%20Consultants%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--paper)] px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--ink)] transition hover:border-[var(--blue)]/40">
+              <a href="https://wa.me/923178921361?text=Hello%20Rehan%20Consultants%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--paper)] px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--ink)] transition hover:-translate-y-1 hover:border-[var(--blue)]/40">
                 <MessageCircle size={14} /> WhatsApp
               </a>
             </div>
