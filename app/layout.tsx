@@ -4,7 +4,7 @@ import "./globals.css";
 import "./admin-cursor.css";
 
 import OrganizationSchema from "@/components/OrganizationSchema";
-import SiteLoaderFast from "@/components/SiteLoaderFast";
+import SiteLoader from "@/components/SiteLoader";
 import TopBarWrapper from "@/components/navigation/TopBarWrapper";
 import { SiteModeProvider } from "@/components/SiteModeProvider";
 
@@ -129,7 +129,7 @@ export default async function RootLayout({
           {!isAdminHost && (
             <>
               <OrganizationSchema />
-              <SiteLoaderFast />
+              <SiteLoader />
               <TopBarWrapper />
             </>
           )}
