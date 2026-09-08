@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 import OrganizationSchema from "@/components/OrganizationSchema";
@@ -112,18 +113,25 @@ export const metadata: Metadata = {
   category: "engineering",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const host = (await headers()).get("host")?.split(":")[0].toLowerCase();
+  const isAdminHost = host === "admin.rehanconsultants.com";
+
   return (
     <html lang="en">
       <body>
         <SiteModeProvider>
-          <OrganizationSchema />
-          <SiteLoader />
-          <TopBarWrapper />
+          {!isAdminHost && (
+            <>
+              <OrganizationSchema />
+              <SiteLoader />
+              <TopBarWrapper />
+            </>
+          )}
           {children}
         </SiteModeProvider>
       </body>
