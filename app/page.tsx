@@ -24,7 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   if ((await requestHost()) === "admin.rehanconsultants.com") {
-    return <AdminPortal />;
+    return (
+      <div className="!cursor-auto [&_*]:!cursor-auto">
+        <AdminPortal />
+      </div>
+    );
   }
 
   return <HomePage />;
