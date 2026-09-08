@@ -1,0 +1,17 @@
+/* Admin dashboard must always use the native system cursor. */
+body.admin-cursor,
+body.admin-cursor * {
+  cursor: auto !important;
+}
+
+body.admin-cursor a,
+body.admin-cursor button,
+body.admin-cursor [role="button"],
+body.admin-cursor select {
+  cursor: pointer !important;
+}
+
+body.admin-cursor input,
+body.admin-cursor textarea {
+  cursor: text !important;
+}
